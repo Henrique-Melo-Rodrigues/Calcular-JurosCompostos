@@ -1,5 +1,11 @@
 from pyodide.ffi import create_proxy
 from pyscript import document
+from pyscript import window
+import json
+
+linhas = []
+taxa_info = {}
+taxa_mensal = 0
 
 from calculator import (
     TAXAS_ANUAIS,
@@ -8,7 +14,6 @@ from calculator import (
     formatar_dinheiro,
     formatar_percentual,
 )
-
 
 def obter_float(element_id):
     valor = document.getElementById(element_id).value
@@ -64,6 +69,20 @@ def renderizar_tabela(linhas):
 
     table_body.innerHTML = conteudo
 
+def gerar_botao_salvar():
+    novo_botao = document.createElement("button")
+
+    novo_botao.innerText = "Salvar calculo"
+    novo_botao.onclick = salvar_calculo
+    tabela = document.getElementsByClassName("results")
+    tabela[0].appendChild(novo_botao)
+
+
+def salvar_calculo(evento):
+    print("salvando")
+    resultado_calculo = { "linhas": linhas, "taxa_info": taxa_info, "taxa_mensal": taxa_mensal }
+    json_string = json.dumps(resultado_calculo)
+    window.localStorage.setItem("resultadoCalculo", json_string)
 
 def mostrar_erro(mensagem):
     document.getElementById("error-message").innerText = mensagem
@@ -74,6 +93,7 @@ def limpar_erro():
 
 
 def calcular(event):
+    global linhas, taxa_info, taxa_mensal
     event.preventDefault()
     limpar_erro()
 
@@ -104,6 +124,7 @@ def calcular(event):
             ultima_linha["total_juros"],
         )
         renderizar_tabela(linhas)
+        gerar_botao_salvar()
     except ValueError:
         mostrar_erro("Preencha os campos com numeros validos.")
 
