@@ -11,7 +11,6 @@
     <body>
         <main class="app">
             <section class="intro">
-                <p class="eyebrow">Python + PyScript</p>
                 <h1>Calculadora de Juros Compostos</h1>
                 <p>
                     Simule investimentos usando taxas anuais fixas de Selic, CDI, IPCA
@@ -58,7 +57,7 @@
                     </label>
 
                     <label>
-                        Taxa hardcoded
+                        Escolha a taxa de juros
                         <select id="rate-type">
                             <option value="selic">Selic - 10,50% ao ano</option>
                             <option value="cdi">CDI - 10,40% ao ano</option>
@@ -97,6 +96,6 @@
             </section>
         </main>
 
-        <script type="py" src="./main.py"></script>
+        <script type="py" src="./main.py" config="./pyscript.json"></script>
     </body>
 </html>

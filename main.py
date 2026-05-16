@@ -1,13 +1,13 @@
 from pyodide.ffi import create_proxy
 from pyscript import document
 
-
-TAXAS_ANUAIS = {
-    "selic": {"nome": "Selic", "taxa": 0.1050},
-    "cdi": {"nome": "CDI", "taxa": 0.1040},
-    "ipca": {"nome": "IPCA", "taxa": 0.0450},
-    "poupanca": {"nome": "Poupanca", "taxa": 0.0617},
-}
+from calculator import (
+    TAXAS_ANUAIS,
+    calcular_evolucao,
+    calcular_taxa_mensal,
+    formatar_dinheiro,
+    formatar_percentual,
+)
 
 
 def obter_float(element_id):
@@ -24,40 +24,6 @@ def obter_inteiro(element_id):
     return int(float(valor))
 
 
-def formatar_dinheiro(valor):
-    texto = f"R$ {valor:,.2f}"
-    return texto.replace(",", "X").replace(".", ",").replace("X", ".")
-
-
-def formatar_percentual(valor):
-    return f"{valor * 100:.2f}%".replace(".", ",")
-
-
-def calcular_evolucao(valor_inicial, aporte_mensal, meses, taxa_mensal):
-    montante = valor_inicial
-    total_investido = valor_inicial
-    total_juros = 0.0
-    linhas = []
-
-    for mes in range(1, meses + 1):
-        juros_mes = montante * taxa_mensal
-        montante += juros_mes + aporte_mensal
-        total_investido += aporte_mensal
-        total_juros += juros_mes
-
-        linhas.append(
-            {
-                "mes": mes,
-                "juros_mes": juros_mes,
-                "total_investido": total_investido,
-                "total_juros": total_juros,
-                "montante": montante,
-            }
-        )
-
-    return linhas
-
-
 def criar_card(titulo, valor):
     return f"""
         <article class="summary-card">
@@ -67,7 +33,9 @@ def criar_card(titulo, valor):
     """
 
 
-def renderizar_resumo(taxa_info, taxa_mensal, valor_final, total_investido, total_juros):
+def renderizar_resumo(
+    taxa_info, taxa_mensal, valor_final, total_investido, total_juros
+):
     summary = document.getElementById("summary")
     summary.innerHTML = (
         criar_card("Taxa escolhida", taxa_info["nome"])
@@ -124,7 +92,7 @@ def calcular(event):
             return
 
         taxa_info = TAXAS_ANUAIS[taxa_id]
-        taxa_mensal = (1 + taxa_info["taxa"]) ** (1 / 12) - 1
+        taxa_mensal = calcular_taxa_mensal(taxa_info["taxa"])
         linhas = calcular_evolucao(valor_inicial, aporte_mensal, meses, taxa_mensal)
 
         ultima_linha = linhas[-1]
