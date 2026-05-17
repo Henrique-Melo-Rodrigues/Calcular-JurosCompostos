@@ -6,10 +6,8 @@ TAXAS_ANUAIS = {
     "personalizada": {"nome": "Personalizada", "taxa": 0.0000},
 }
 
-
 def calcular_taxa_mensal(taxa_anual):
     return (1 + taxa_anual) ** (1 / 12) - 1
-
 
 def calcular_evolucao(valor_inicial, aporte_mensal, meses, taxa_mensal):
     montante = valor_inicial
@@ -35,11 +33,9 @@ def calcular_evolucao(valor_inicial, aporte_mensal, meses, taxa_mensal):
 
     return linhas
 
-
 def formatar_dinheiro(valor):
     texto = f"R$ {valor:,.2f}"
     return texto.replace(",", "X").replace(".", ",").replace("X", ".")
-
 
 def formatar_percentual(valor):
     return f"{valor * 100:.2f}%".replace(".", ",")

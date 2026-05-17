@@ -1,12 +1,6 @@
 from pyodide.ffi import create_proxy
-from pyscript import document
-from pyscript import window
-import json
-
-linhas = []
-taxa_info = {}
-taxa_mensal = 0
-
+from pyscript import document, window
+from gerador_pdf import exportar_para_pdf
 from calculator import (
     TAXAS_ANUAIS,
     calcular_evolucao,
@@ -14,6 +8,10 @@ from calculator import (
     formatar_dinheiro,
     formatar_percentual,
 )
+
+linhas = []
+taxa_info = {}
+taxa_mensal = 0
 
 def obter_float(element_id):
     valor = document.getElementById(element_id).value
@@ -74,15 +72,11 @@ def taxa_mudou(_):
         taxa_label.hidden = True
 
 def exibir_btn_salvar():
-    btn_salvar = document.getElementById("container-btn-salvar")
+    btn_salvar = document.getElementById("container-btn-gerar-pdf")
     btn_salvar.removeAttribute("hidden")
 
-
-def salvar_calculo(evento):
-    print("salvando")
-    resultado_calculo = { "linhas": linhas, "taxa_info": taxa_info, "taxa_mensal": taxa_mensal }
-    json_string = json.dumps(resultado_calculo)
-    window.localStorage.setItem("resultadoCalculo", json_string)
+def gerar_pdf(evento):
+    exportar_para_pdf("results-section")
 
 def mostrar_erro(mensagem):
     document.getElementById("error-message").innerText = mensagem
@@ -139,5 +133,5 @@ form.addEventListener("submit", create_proxy(calcular))
 select_taxa = document.getElementById("rate-type")
 select_taxa.addEventListener("change", create_proxy(taxa_mudou))
 
-select_taxa = document.getElementById("btn-salvar")
-select_taxa.addEventListener("click", create_proxy(salvar_calculo))
+select_taxa = document.getElementById("btn-gerar-pdf")
+select_taxa.addEventListener("click", create_proxy(gerar_pdf))

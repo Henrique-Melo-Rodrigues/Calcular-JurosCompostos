@@ -1,5 +1,6 @@
 {
   "files": {
-    "./calculator.py": "./calculator.py"
+    "./calculator.py": "./calculator.py",
+    "./gerador_pdf.py": "./gerador_pdf.py"
   }
 }
