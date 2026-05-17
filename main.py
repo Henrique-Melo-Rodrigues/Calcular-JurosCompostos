@@ -66,16 +66,16 @@ def renderizar_tabela(linhas):
     table_body.innerHTML = conteudo
 
 def taxa_mudou(_):
-    taxaLabel = document.getElementById("custom-rate-container")
+    taxa_label = document.getElementById("custom-rate-container")
     taxa_id = document.getElementById("rate-type").value
     if taxa_id == "personalizada":
-        taxaLabel.hidden = False
+        taxa_label.hidden = False
     else: 
-        taxaLabel.hidden = True
+        taxa_label.hidden = True
 
 def exibir_btn_salvar():
-    btnSalvar = document.getElementById("container-btn-salvar")
-    btnSalvar.removeAttribute("hidden")
+    btn_salvar = document.getElementById("container-btn-salvar")
+    btn_salvar.removeAttribute("hidden")
 
 
 def salvar_calculo(evento):
