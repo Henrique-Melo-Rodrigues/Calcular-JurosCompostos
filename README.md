@@ -1,24 +1,24 @@
-# [[Calculadora de Juros Compostos]]
+# Calculadora de Juros Compostos
 
-Aplicação web feita com [[Python]], [[PyScript]], [[HTML]] e [[CSS]] para
-simular a evolução de um investimento com [[Juros Compostos]].
+Aplicação web feita com Python, PyScript, HTML e CSS para
+simular a evolução de um investimento com Juros Compostos.
 
-O usuário informa [[Valor inicial]], [[Aporte mensal]], [[Periodo em meses]] e
-[[Taxa anual]]. A aplicação calcula [[Juros do mes]], [[Total investido]],
-[[Total de juros]] e [[Total acumulado]].
+O usuário informa Valor inicial, Aporte mensal, Periodo em meses e
+Taxa anual. A aplicação calcula Juros do mes, Total investido,
+Total de juros e Total acumulado.
 
 
-## [[Resumo]]
+## Resumo
 
-Este projeto usa [[PyScript]] para executar Python no navegador. A interface
+Este projeto usa PyScript para executar Python no navegador. A interface
 fica em `index.html`, a integração com a página fica em `main.py`, a regra de
-negócio fica em `calculator.py`, e a qualidade é garantida com [[pytest]],
-[[Ruff]] e [[uv]].
+negócio fica em `calculator.py`, e a qualidade é garantida com pytest,
+Ruff e uv.
 
 
 ---
 
-## [[Como rodar]]
+## Como rodar
 
 Instale as dependências:
 
@@ -46,7 +46,7 @@ python3 -m http.server 8001
 
 ---
 
-## [[Estrutura]]
+## Estrutura
 
 ```text
 .
@@ -61,23 +61,23 @@ python3 -m http.server 8001
     └── test_calculator.py
 ```
 
-- [[index.html]]: define a interface e carrega o PyScript.
-- [[style.css]]: define o visual da calculadora.
-- [[main.py]]: conecta a página HTML com o código Python.
-- [[calculator.py]]: contém a lógica pura de cálculo e formatação.
-- [[pyscript.json]]: informa ao PyScript que `calculator.py` deve ser carregado.
-- [[pyproject.toml]]: configura dependências, Ruff e pytest.
-- [[uv.lock]]: fixa as versões das dependências.
-- [[tests/test_calculator.py]]: testa a lógica de `calculator.py`.
+- index.html: define a interface e carrega o PyScript.
+- style.css: define o visual da calculadora.
+- main.py: conecta a página HTML com o código Python.
+- calculator.py: contém a lógica pura de cálculo e formatação.
+- pyscript.json: informa ao PyScript que `calculator.py` deve ser carregado.
+- pyproject.toml: configura dependências, Ruff e pytest.
+- uv.lock: fixa as versões das dependências.
+- tests/test_calculator.py: testa a lógica de `calculator.py`.
 
 ---
 
-## [[Como funciona]]
+## Como funciona
 
 O fluxo da aplicação é:
 
 1. O navegador abre `index.html`.
-2. O [[PyScript]] executa `main.py`.
+2. O PyScript executa `main.py`.
 3. O `pyscript.json` carrega `calculator.py` no ambiente do navegador.
 4. O usuário preenche os campos e clica em `Calcular`.
 5. `main.py` lê os valores da página.
@@ -106,9 +106,9 @@ acumulado.
 
 ---
 
-## [[uv]]
+## uv
 
-O [[uv]] facilita o trabalho em equipe porque instala dependências rapidamente e
+O uv facilita o trabalho em equipe porque instala dependências rapidamente e
 usa o `uv.lock` para manter as mesmas versões entre todos os integrantes.
 
 Isso reduz problemas como:
@@ -128,7 +128,7 @@ uv run ruff format .
 
 ---
 
-## [[Testes e qualidade]]
+## Testes e qualidade
 
 Rodar testes:
 
