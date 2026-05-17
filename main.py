@@ -65,13 +65,10 @@ def renderizar_tabela(linhas):
 
     table_body.innerHTML = conteudo
 
-def gerar_botao_salvar():
-    novo_botao = document.createElement("button")
+def exibir_btn_salvar():
+    btnSalvar = document.getElementById("container-btn-salvar")
+    btnSalvar.removeAttribute("hidden")
 
-    novo_botao.innerText = "Salvar calculo"
-    novo_botao.onclick = salvar_calculo
-    tabela = document.getElementsByClassName("results")
-    tabela[0].appendChild(novo_botao)
 
 def salvar_calculo(evento):
     print("salvando")
@@ -117,7 +114,7 @@ def calcular(event):
             ultima_linha["total_juros"],
         )
         renderizar_tabela(linhas)
-        gerar_botao_salvar()
+        exibir_btn_salvar()
     except ValueError:
         mostrar_erro("Preencha os campos com numeros validos.")
 
