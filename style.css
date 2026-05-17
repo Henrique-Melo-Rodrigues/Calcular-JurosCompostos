@@ -223,3 +223,7 @@ tbody tr:hover {
         grid-template-columns: 1fr;
     }
 }
+
+#container-btn-salvar {
+    margin-top: 10px;
+}

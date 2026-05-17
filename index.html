@@ -63,8 +63,23 @@
                             <option value="cdi">CDI - 10,40% ao ano</option>
                             <option value="ipca">IPCA - 4,50% ao ano</option>
                             <option value="poupanca">Poupanca - 6,17% ao ano</option>
+                            <option value="personalizada">Taxa personalizada</option>
                         </select>
                     </label>
+
+                    <div id="custom-rate-container" hidden>
+                        <label>
+                            Taxa de juros personalizada
+                            <input
+                                id="custom-rate"
+                                type="number"
+                                min="0"
+                                step="0.01"
+                                value="10.90"
+                                placeholder="Ex: 10.90"
+                            >
+                    </label>
+                    </div>
 
                     <button type="submit">Calcular</button>
                 </form>
@@ -96,7 +111,7 @@
             </section>
 
             <div id="container-btn-salvar" hidden>
-                <button onclick="salvar_calculo()" id="btn-salvar">Salvar</button>
+                <button id="btn-salvar">Salvar</button>
             </div>
         </main>
 

@@ -3,6 +3,7 @@ TAXAS_ANUAIS = {
     "cdi": {"nome": "CDI", "taxa": 0.1040},
     "ipca": {"nome": "IPCA", "taxa": 0.0450},
     "poupanca": {"nome": "Poupanca", "taxa": 0.0617},
+    "personalizada": {"nome": "Personalizada", "taxa": 0.0000},
 }
 
 

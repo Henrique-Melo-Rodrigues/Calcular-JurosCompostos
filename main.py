@@ -65,6 +65,14 @@ def renderizar_tabela(linhas):
 
     table_body.innerHTML = conteudo
 
+def taxa_mudou(_):
+    taxaLabel = document.getElementById("custom-rate-container")
+    taxa_id = document.getElementById("rate-type").value
+    if taxa_id == "personalizada":
+        taxaLabel.hidden = False
+    else: 
+        taxaLabel.hidden = True
+
 def exibir_btn_salvar():
     btnSalvar = document.getElementById("container-btn-salvar")
     btnSalvar.removeAttribute("hidden")
@@ -102,6 +110,13 @@ def calcular(event):
             return
 
         taxa_info = TAXAS_ANUAIS[taxa_id]
+
+        if taxa_id == "personalizada":
+            taxa_info = {
+                "nome": "Personalizada",
+                "taxa": obter_float("custom-rate") / 100,
+            }
+
         taxa_mensal = calcular_taxa_mensal(taxa_info["taxa"])
         linhas = calcular_evolucao(valor_inicial, aporte_mensal, meses, taxa_mensal)
 
@@ -120,3 +135,9 @@ def calcular(event):
 
 form = document.getElementById("calculator-form")
 form.addEventListener("submit", create_proxy(calcular))
+
+select_taxa = document.getElementById("rate-type")
+select_taxa.addEventListener("change", create_proxy(taxa_mudou))
+
+select_taxa = document.getElementById("btn-salvar")
+select_taxa.addEventListener("click", create_proxy(salvar_calculo))
