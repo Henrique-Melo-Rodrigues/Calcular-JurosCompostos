@@ -21,13 +21,11 @@ def obter_float(element_id):
         return 0.0
     return float(valor)
 
-
 def obter_inteiro(element_id):
     valor = document.getElementById(element_id).value
     if not valor:
         return 0
     return int(float(valor))
-
 
 def criar_card(titulo, valor):
     return f"""
@@ -36,7 +34,6 @@ def criar_card(titulo, valor):
             <strong>{valor}</strong>
         </article>
     """
-
 
 def renderizar_resumo(
     taxa_info, taxa_mensal, valor_final, total_investido, total_juros
@@ -50,7 +47,6 @@ def renderizar_resumo(
         + criar_card("Total investido", formatar_dinheiro(total_investido))
         + criar_card("Total em juros", formatar_dinheiro(total_juros))
     )
-
 
 def renderizar_tabela(linhas):
     table_body = document.getElementById("result-table")
@@ -77,7 +73,6 @@ def gerar_botao_salvar():
     tabela = document.getElementsByClassName("results")
     tabela[0].appendChild(novo_botao)
 
-
 def salvar_calculo(evento):
     print("salvando")
     resultado_calculo = { "linhas": linhas, "taxa_info": taxa_info, "taxa_mensal": taxa_mensal }
@@ -87,10 +82,8 @@ def salvar_calculo(evento):
 def mostrar_erro(mensagem):
     document.getElementById("error-message").innerText = mensagem
 
-
 def limpar_erro():
     mostrar_erro("")
-
 
 def calcular(event):
     global linhas, taxa_info, taxa_mensal
@@ -127,7 +120,6 @@ def calcular(event):
         gerar_botao_salvar()
     except ValueError:
         mostrar_erro("Preencha os campos com numeros validos.")
-
 
 form = document.getElementById("calculator-form")
 form.addEventListener("submit", create_proxy(calcular))
