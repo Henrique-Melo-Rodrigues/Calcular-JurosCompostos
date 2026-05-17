@@ -9,10 +9,6 @@ from calculator import (
     formatar_percentual,
 )
 
-linhas = []
-taxa_info = {}
-taxa_mensal = 0
-
 def obter_float(element_id):
     valor = document.getElementById(element_id).value
     if not valor:
@@ -85,7 +81,6 @@ def limpar_erro():
     mostrar_erro("")
 
 def calcular(event):
-    global linhas, taxa_info, taxa_mensal
     event.preventDefault()
     limpar_erro()
 
